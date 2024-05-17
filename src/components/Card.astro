@@ -1,0 +1,323 @@
+---
+import { Image } from 'astro:assets';
+
+// Image imports
+import patchTool from '../assets/png/patch-tool.webp';
+import patchThumb from '../assets/png/patch-thumb.webp';
+import slider from '../assets/png/slider.webp';
+import lineartTool from '../assets/png/lineart-tool.webp';
+import material1 from '../assets/png/panel-first-state.webp';
+import material2 from '../assets/png/panel-second-state.webp';
+import material3 from '../assets/png/panel-third-state.webp';
+import robot1 from '../assets/png/robot-first-state.webp';
+import robot2 from '../assets/png/robot-second-state.webp';
+import robot3 from '../assets/png/robot-third-state.webp';
+import standingRobot1 from '../assets/png/standing-robot-first-state.webp';
+import standingRobot2 from '../assets/png/standing-robot-second-state.webp';
+import standingRobot3 from '../assets/png/standing-robot-third-state.webp';
+import standingRobot4 from '../assets/png/standing-robot-fourth-state.webp';
+import standingRobot5 from '../assets/png/standing-robot-fifth-state.webp';
+
+// Image arrays
+const panelImages = [material1, material2, material3];
+const firstImages = [robot1, robot2, robot3];
+const secondImages = [standingRobot1, standingRobot2, standingRobot3, standingRobot4, standingRobot5];
+
+const { title, text, image, imageClassName } = Astro.props;
+const smallScreen = false
+
+---
+
+<div class="card-with-info">
+    <div class="info">
+        <p class="title">{title}</p>
+        <p class="text">{text}</p>
+    </div>
+
+    {smallScreen && imageClassName === 'thirdImage' && (
+        <Image class="smallThirdImage" src={image} alt="card image" />
+    )}
+
+    {imageClassName && (
+        <>
+            {imageClassName === 'fourthImage' && (
+                <>
+                    <Image src={patchTool} width="240" height="80" alt="Patch tool" />
+                    <Image src={slider} width="159" style="margin-top: -25px;" alt="Slider" />
+                    <Image src={patchThumb} class="patch-thumb" height="64" width="64" alt="Patch thumb" />
+                </>
+            )}
+            {imageClassName === 'fifthImage' && (
+                <Image src={lineartTool} width="240" height="80" alt="Lineart tool" />
+            )}
+            {/* {imageClassName === 'firstImage' && (
+                <ImageAnimation timeout={2000} images={panelImages} width="240" height="148" />
+            )} */}
+        </>
+    )}
+
+    <!-- {imageClassName !== 'firstImage' && imageClassName !== 'secondImage' ? (
+        <Image class={imageClassName} src={image} alt="card image" />
+    ) : (
+        <ImageAnimation
+            timeout={imageClassName === 'firstImage' ? 2000 : 3000}
+            images={imageClassName === 'firstImage' ? firstImages : secondImages}
+            imageClassName={imageClassName === 'firstImage' ? 'firstImage' : 'secondImage'}
+        />
+    )} -->
+</StyledCardWithInfo>
+
+<style>
+  .card-with-info {
+    display: flex;
+    max-height: 400px;
+    min-height: 356px;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+    flex: 1 0 0;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    background: linear-gradient(168deg, rgba(255, 255, 255, 0.04) -0.07%, rgba(255, 255, 255, 0.02) 91.17%);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .info {
+    display: flex;
+    width: 240px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .quest-image {
+    margin-bottom: -40px;
+    margin-left: 0;
+  }
+
+  @media (max-width: 660px) {
+    .quest-image {
+      margin-left: 0;
+    }
+  }
+
+  .title {
+    color: rgba(255, 255, 255, 0.9);
+    font-family: Satoshi;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+  }
+
+  .text {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: Satoshi;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .patch-thumb {
+    position: absolute;
+    right: 75px;
+    top: 170px;
+    z-index: 99;
+  }
+
+  @media (min-width: 768px) and (max-width: 1560px) {
+    .patch-thumb {
+      display: none;
+    }
+  }
+
+  @media (max-width: 661px) {
+    .patch-thumb {
+      display: none;
+    }
+  }
+
+  .firstImage {
+    position: absolute;
+    bottom: -20px;
+    right: -155px;
+  }
+
+  @media (max-width: 480px) {
+    .firstImage {
+      right: -364px;
+    }
+  }
+
+  @media (min-width: 480px) and (max-width: 661px) {
+    .firstImage {
+      right: -260px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 815px) {
+    .firstImage {
+      right: -380px;
+    }
+  }
+
+  @media (min-width: 815px) and (max-width: 964px) {
+    .firstImage {
+      right: -340px;
+    }
+  }
+
+  @media (min-width: 964px) and (max-width: 1200px) {
+    .firstImage {
+      right: -264px;
+    }
+  }
+
+  @media (min-width: 1200px) and (max-width: 1555px) {
+    .firstImage {
+      right: -192px;
+    }
+  }
+
+  .fifthImage {
+    height: 368px;
+  }
+
+  .fourthImage {
+    height: 402px;
+    width: 466px;
+  }
+
+  .fifthImage,
+  .fourthImage {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+  }
+
+  @media (min-width: 450px) and (max-width: 550px) {
+    .fifthImage,
+    .fourthImage {
+      right: -200px;
+    }
+  }
+
+  @media (min-width: 550px) and (max-width: 640px) {
+    .fifthImage,
+    .fourthImage {
+      right: -130px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    .fifthImage,
+    .fourthImage {
+      right: -240px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1030px) {
+    .fifthImage,
+    .fourthImage {
+      right: -240px;
+    }
+  }
+
+  @media (min-width: 1030px) and (max-width: 1240px) {
+    .fifthImage,
+    .fourthImage {
+      right: -130px;
+    }
+  }
+
+  @media (min-width: 1240px) and (max-width: 1560px) {
+    .fifthImage,
+    .fourthImage {
+      right: -130px;
+    }
+  }
+
+  .thirdImage {
+    position: absolute;
+    right: 32px;
+  }
+
+  @media (min-width: 769px) and (max-width: 1100px) {
+    .thirdImage {
+      width: 60%;
+      bottom: auto;
+    }
+  }
+
+  @media (min-width: 1100px) and (max-width: 1600px) {
+    .thirdImage {
+      width: 65%;
+      bottom: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .thirdImage {
+      display: none;
+    }
+  }
+
+  .secondImage {
+    height: 526px;
+    position: absolute;
+    bottom: -164px;
+    right: -130px;
+  }
+
+  @media (max-width: 400px) {
+    .secondImage {
+      right: -350px;
+    }
+  }
+
+  @media (min-width: 401px) and (max-width: 520px) {
+    .secondImage {
+      right: -320px;
+    }
+  }
+
+  @media (min-width: 520px) and (max-width: 630px) {
+    .secondImage {
+      right: -200px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 870px) {
+    .secondImage {
+      right: -350px;
+    }
+  }
+
+  @media (min-width: 870px) and (max-width: 1030px) {
+    .secondImage {
+      right: -300px;
+    }
+  }
+
+  @media (min-width: 1030px) and (max-width: 1250px) {
+    .secondImage {
+      right: -220px;
+    }
+  }
+
+  @media (min-width: 1250px) and (max-width: 1660px) {
+    .secondImage {
+      right: -150px;
+    }
+  }
+
+  .smallThirdImage {
+    width: min(100%, 352px);
+  }
+</style>

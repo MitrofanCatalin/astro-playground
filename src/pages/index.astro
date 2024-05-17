@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import TopBar from '../components/TopBar.astro';
+import robot from '../assets/png/robot-first-state.webp'
+import multiple from '../assets/png/multiple-explorations.webp'
+import fourth from '../assets/png/4th-card.webp'
+import fifth from '../assets/png/5th-card.webp'
+import second from '../assets/png/standing-robot-first-state.webp'
+import quest1 from 'assets/png/quest-1.webp'
+import quest2 from 'assets/png/quest-2.webp'
+import quest3 from 'assets/png/quest-3.webp'
+
+const cardConstants = [
+	{
+		title: 'Generate multiple materials per 3D object',
+		text: 'Maximize the value of each pixel by generating multiple PBR materials at once.',
+		image: robot,
+		imageClassName: 'firstImage',
+	},
+	{
+		title: 'Quickly explore many styles to find the perfect look',
+		text: 'Effortlessly generate captivating 3D previews in seconds. Transform your vision into reality with speed and precision.',
+		image: second,
+		imageClassName: 'secondImage',
+	},
+	{
+		title: 'Restyle your entire inventory simultaneously',
+		text: 'Revolutionize your creative process with explorations across multiple game objects at the same time. Match styles or compare options in a single pass.',
+
+		image: multiple,
+		imageClassName: 'thirdImage',
+	},
+	{
+		title: 'Enhance and refine textured objects',
+		text: 'Swiftly fix imperfections, add intricate details, and elevate your creations to a new level',
+		image: fourth,
+		imageClassName: 'fourthImage',
+	},
+	{
+		title: 'Take control of the details',
+		text: 'The little things matter, so use our 3D line art control to make sure every bolt on your robot is in the right place. Or guide the color pallet and art style with a background image.',
+		image: fifth,
+		imageClassName: 'fifthImage',
+	},
+]
+
+---
+
+<Layout title="Welcome to Astro.">
+	<div class="topbar-wrapper">
+		<TopBar href='google/com'/>	
+	</div>
+	
+	<main>
+		<!-- <video src="https://www.youtube.com/watch?v=NE90uY8LJc4" width={250} height={250} /> -->
+		<iframe width="420" height="315"
+		src="https://www.youtube.com/embed/NE90uY8LJc4">
+		</iframe>
+		<div class='cards-container'>
+			{cardConstants.map((card: any) => (
+				<div class='card'>
+					<Card
+						title={card.title}
+						text={card.text}
+						image={card.image ? card.image : ''}
+						imageClassName={card.imageClassName ? card.imageClassName : ''}
+					/>
+				</div>
+			))}
+		</div>
+	</main>
+</Layout>
+
+<style>
+
+	main {
+		display: flex;
+		width: min(calc(100% - 320px), 1120px);
+		padding: 40px 160px;
+		flex-direction: column;
+		align-items: center;
+		gap: 50px;
+		font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	}
+
+	.topbar-wrapper {
+		display: flex;
+		padding: 24px;
+		justify-content: center;
+		position: relative;
+		z-index: 10;
+
+		@media (max-width: 768px) {
+			padding: 12px 24px;
+		}
+
+		@media (max-width: 450px) {
+			padding: 6px 24px;
+		}
+	}
+
+	.astro-a {
+		position: absolute;
+		top: -32px;
+		left: 50%;
+		transform: translatex(-50%);
+		width: 220px;
+		height: auto;
+		z-index: -1;
+	}
+	
+	h1 {
+		font-size: 4rem;
+		font-weight: 700;
+		line-height: 1;
+		text-align: center;
+		margin-bottom: 1em;
+	}
+
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+
+	.instructions {
+		margin-bottom: 2rem;
+		border: 1px solid rgba(var(--accent-light), 25%);
+		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
+		padding: 1.5rem;
+		border-radius: 8px;
+	}
+
+	.instructions code {
+		font-size: 0.8em;
+		font-weight: bold;
+		background: rgba(var(--accent-light), 12%);
+		color: rgb(var(--accent-light));
+		border-radius: 4px;
+		padding: 0.3em 0.4em;
+	}
+
+	.instructions strong {
+		color: rgb(var(--accent-light));
+	}
+
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 2rem;
+		padding: 0;
+	}
+	.cards-container {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, auto);
+		gap: 24px;
+		justify-content: center;
+		width: 100%;
+
+		@media (max-width: 768px) {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+	.card {
+		grid-column: span 1;
+		height: 400px;
+	}
+	.card:nth-child(3) {
+		height: 450px;
+		grid-column: span 2;
+
+		& > * {
+			height: 450px;
+			justify-content: center;
+
+			.info {
+				width: 80%;
+			}
+
+			@media (min-width: 768px) {
+				.info {
+					width: 30%;
+				}
+			}
+		}
+	}
+</style>
