@@ -10,8 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.8.3",
     "@astrojs/check": "^0.6.0",
+    "astro": "^4.8.3",
+    "lite-youtube-embed": "^0.3.2",
     "typescript": "^5.4.5"
   }
 }

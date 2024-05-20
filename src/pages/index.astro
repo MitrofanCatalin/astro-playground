@@ -19,12 +19,11 @@ import Footer from '../components/Footer.astro';
 	<main>
 
 		<div class="container">
-			<iframe 
-				title="Youtube presentation of the Charmed.ai products"
-				width="100%" 
-				height="500px"
-				src="https://www.youtube.com/embed/NE90uY8LJc4">
-			</iframe>
+			<lite-youtube videoid="NE90uY8LJc4" style="background-image: url('https://i.ytimg.com/vi/NE90uY8LJc4/hqdefault.jpg')" class="yt-video">
+				<a href="https://youtube.com/watch?v=NE90uY8LJc4" class="lty-playbtn" title="Play Video">
+				  <span class="lyt-visually-hidden">Play Video: Charmed AI: End to end 3D character creation with AI</span>
+				</a>
+			</lite-youtube>
 		</div>
 
 		<div class="container">
@@ -138,6 +137,12 @@ import Footer from '../components/Footer.astro';
 			padding: 20px 40px;
 		}
 	}
+	
+	.yt-video{
+		width:100%;
+		max-width: none;
+	}
+
 	.topbar-wrapper {
 		display: flex;
 		padding: 24px;
