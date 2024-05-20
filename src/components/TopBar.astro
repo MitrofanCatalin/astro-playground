@@ -2,8 +2,6 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/Logo.png'
 interface Props {
-	// title: string;
-	// body: string;
 	href: string;
 }
 
@@ -12,16 +10,16 @@ const { href} = Astro.props;
 
 <nav class="navbar">
 	<a href={href}>
-		<Image src={logo} alt="logoimage"/>
+		<Image src={logo} alt="logoimage" loading="eager"/>
 	</a>
     <div class="links">
-        <button class="nav-button">
+        <button class="nav-button" data-section="geometry-container">
             Meshes
         </button>
-        <button class="nav-button">
+        <button class="nav-button" data-section="texture-container">
             Materials
         </button>
-        <button class="nav-button">
+        <button class="nav-button" data-section="animations-container">
             Animations
         </button>
         <button class="nav-button">
@@ -49,10 +47,9 @@ const { href} = Astro.props;
             background: none;
             width: 100%;
         }
-        @media (max-width: 768px) {
-            padding: 16px 0;
-        }
     }
+
+	
 
 	.links {
 		display: flex;
@@ -113,4 +110,30 @@ const { href} = Astro.props;
 	.link-card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent-light));
 	}
+
+	@media (max-width: 768px) {
+		.navbar{
+            padding: 16px 0;
+		}
+		.links {
+			display: none;
+		}
+	}
 </style>
+<script>
+	const scrollToSection = (sectionId: string ) => {
+	  const targetDiv = document.getElementById(sectionId);
+	  if (targetDiv) {
+		targetDiv.scrollIntoView({ behavior: 'smooth' });
+	  }
+	};
+  
+	const navButtons = document.querySelectorAll('.nav-button');
+  
+	navButtons.forEach(button => {
+	  button.addEventListener('click', () => {
+		const sectionId = button.getAttribute('data-section');
+		scrollToSection(sectionId as string);
+	  });
+	});
+  </script>

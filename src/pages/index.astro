@@ -2,49 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import TopBar from '../components/TopBar.astro';
-import robot from '../assets/png/robot-first-state.webp'
-import multiple from '../assets/png/multiple-explorations.webp'
-import fourth from '../assets/png/4th-card.webp'
-import fifth from '../assets/png/5th-card.webp'
-import second from '../assets/png/standing-robot-first-state.webp'
-import quest1 from 'assets/png/quest-1.webp'
-import quest2 from 'assets/png/quest-2.webp'
-import quest3 from 'assets/png/quest-3.webp'
 
-const cardConstants = [
-	{
-		title: 'Generate multiple materials per 3D object',
-		text: 'Maximize the value of each pixel by generating multiple PBR materials at once.',
-		image: robot,
-		imageClassName: 'firstImage',
-	},
-	{
-		title: 'Quickly explore many styles to find the perfect look',
-		text: 'Effortlessly generate captivating 3D previews in seconds. Transform your vision into reality with speed and precision.',
-		image: second,
-		imageClassName: 'secondImage',
-	},
-	{
-		title: 'Restyle your entire inventory simultaneously',
-		text: 'Revolutionize your creative process with explorations across multiple game objects at the same time. Match styles or compare options in a single pass.',
-
-		image: multiple,
-		imageClassName: 'thirdImage',
-	},
-	{
-		title: 'Enhance and refine textured objects',
-		text: 'Swiftly fix imperfections, add intricate details, and elevate your creations to a new level',
-		image: fourth,
-		imageClassName: 'fourthImage',
-	},
-	{
-		title: 'Take control of the details',
-		text: 'The little things matter, so use our 3D line art control to make sure every bolt on your robot is in the right place. Or guide the color pallet and art style with a background image.',
-		image: fifth,
-		imageClassName: 'fifthImage',
-	},
-]
-
+import ShowcaseContainer from '../components/ShowcaseContainer.astro';
+import {ShowcaseConstant, CardConstants, questConstants} from '../constants/TextureConstants'
+import {GeometryConstant, GeometryCardConstants} from '../constants/GeometryConstant'
+import {ShowcaseConstant as AnimationConstant } from '../constants/AnimationConstants'
+import AnimationContainer from '../components/AnimationContainer.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -53,37 +17,127 @@ const cardConstants = [
 	</div>
 	
 	<main>
-		<!-- <video src="https://www.youtube.com/watch?v=NE90uY8LJc4" width={250} height={250} /> -->
-		<iframe width="420" height="315"
-		src="https://www.youtube.com/embed/NE90uY8LJc4">
-		</iframe>
-		<div class='cards-container'>
-			{cardConstants.map((card: any) => (
-				<div class='card'>
+
+		<div class="container">
+			<iframe 
+				title="Youtube presentation of the Charmed.ai products"
+				width="100%" 
+				height="500px"
+				src="https://www.youtube.com/embed/NE90uY8LJc4">
+			</iframe>
+		</div>
+
+		<div class="container">
+
+			<div class='title-container' id='geometry-container'>
+
+				<h2 class='geometry-header'>AI Geometry Generator</h2>
+				<p class='secondary'>
+					<span>Effortlessly make your ideas reality by creating unique and compelling 3D meshes.</span>
+				</p>
+				<div class='ctas'>
+					<button	class='gradient-button'>
+						Try it for free
+					</button>
+				</div>
+			</div>
+			<div class='cards-container'>
+				{GeometryCardConstants.map((card: any) => (
+					<div class='card'>
 					<Card
 						title={card.title}
 						text={card.text}
 						image={card.image ? card.image : ''}
 						imageClassName={card.imageClassName ? card.imageClassName : ''}
-					/>
+						/>
 				</div>
 			))}
+			</div>
+
+			<ShowcaseContainer imageSets={[GeometryConstant.slice(0, 11), GeometryConstant.slice(11, 23)]}isImage title='Made with the Geometry Generator' subtitle='Click on an image to view in 3D'/>
 		</div>
+
+		<div class="container">
+
+			<div class='title-container' id='texture-container'>
+
+				<h2 class='texture-header'>AI Texture Generator</h2>
+				<p class='secondary'>
+					<span>Use AI to generate beautiful textures for your 3D objects</span>
+				</p>
+				<div class='ctas'>
+					<button					class='gradient-button'					>
+						Try it for free
+					</button>
+				</div>
+			</div>
+			<div class='cards-container'>
+				{CardConstants.map((card: any) => (
+					<div class='card'>
+					<Card
+						title={card.title}
+						text={card.text}
+						image={card.image ? card.image : ''}
+						imageClassName={card.imageClassName ? card.imageClassName : ''}
+						/>
+				</div>
+			))}
+			</div>
+
+			<ShowcaseContainer imageSets={[ShowcaseConstant.slice(0, 9), ShowcaseConstant.slice(9, 18), ShowcaseConstant.slice(18, 27)]} isImage title='Textured with Charmed' subtitle='Click on a textured object to preview it in 3D'/>
+		</div>
+
+		<div class="container">
+			<AnimationContainer/>
+			<ShowcaseContainer imageSets={[AnimationConstant]} isImage={false} title='Animated with Charmed' subtitle='Click on any animation to preview it in 3D'/>
+		</div>
+
+		<div class="container">
+			
+			<div class='title-container' id='quest-container'>
+				<!-- <TextureIcon /> -->
+
+				<h2 class='geometry-header'>Quest Generator</h2>
+				<p class='secondary'>
+					<span>Build imaginative worlds and engaging quests with AI Assistance</span>
+				</p>
+				<div class='ctas'>
+					<button	class='gradient-button'>
+						Try it for free
+					</button>
+				</div>
+			</div>
+			<div class='quest-cards-container'>
+				{questConstants.map((card: any) => (
+					<div class='quest-card'>
+					<Card title={card.title} text={card.text} image={card.image} imageClassName={card.imageClassName} />
+				</div>
+			))}
+			</div>
+		</div>
+
+		
 	</main>
+	<Footer/>
 </Layout>
 
-<style>
-
+<style is:global>
 	main {
 		display: flex;
-		width: min(calc(100% - 320px), 1120px);
+		width: auto;
 		padding: 40px 160px;
 		flex-direction: column;
 		align-items: center;
 		gap: 50px;
 		font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		overflow-x: hidden;
 	}
-
+	@media (max-width: 768px) {
+		main {
+			width: 100%;
+			padding: 20px 40px;
+		}
+	}
 	.topbar-wrapper {
 		display: flex;
 		padding: 24px;
@@ -100,59 +154,15 @@ const cardConstants = [
 		}
 	}
 
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
+	.container{
+		display: flex;
+		width: min(100% , 1120px);
+		padding: 40px 160px;
+		flex-direction: column;
+		align-items: center;
+		gap: 50px;
 	}
 
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
 	.cards-container {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
@@ -170,23 +180,146 @@ const cardConstants = [
 		grid-column: span 1;
 		height: 400px;
 	}
-	.card:nth-child(3) {
-		height: 450px;
-		grid-column: span 2;
 
-		& > * {
-			height: 450px;
-			justify-content: center;
+	.title-container {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+		z-index: 100;
+		gap: 16px;
+	}
+		.heading {
+			color: #fff;
+			text-align: center;
+			font-family: Satoshi;
+			font-size: 48px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 56px;
+			letter-spacing: -0.48px;
+			margin: 0;
 
-			.info {
-				width: 80%;
-			}
-
-			@media (min-width: 768px) {
-				.info {
-					width: 30%;
-				}
+			@media (max-width: 768px) {
+				font-size: 24px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 32px;
+				letter-spacing: -0.24px;
 			}
 		}
+
+		.secondary {
+			font-size: 20px;
+			color: #9f9aab;
+			width: 80%;
+			align-items: center;
+			text-align: center;
+			margin: 0;
+
+			@media (max-width: 768px) {
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 24px;
+			}
+		}
+		.geometry-header {
+		text-align: center;
+		font-family: Satoshi;
+		font-size: 48px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 56px;
+		letter-spacing: -0.48px;
+		align-self: stretch;
+		background: linear-gradient(90deg, #fff 29.67%, #828282 50.93%, #fff 72.19%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		margin: auto;
 	}
+
+	.texture-header {
+		text-align: center;
+		font-family: Satoshi;
+		font-size: 48px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 56px;
+		letter-spacing: -0.48px;
+		align-self: stretch;
+		background: linear-gradient(90deg, #fff 29.67%, #efbeff 50.93%, #fff 72.19%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		margin: auto;
+	}
+	.animation-header {
+		text-align: center;
+		font-family: Satoshi;
+		font-size: 48px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 56px;
+		letter-spacing: -0.48px;
+		align-self: stretch;
+		background: linear-gradient(90deg, #fff 29.67%, #ffb5d6 50.93%, #fff 72.19%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		margin: auto;
+	}
+
+	.quest-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 24px;
+    justify-content: center;
+    width: 100%;
+}
+
+@media (max-width: 928px) {
+    .quest-cards-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 928px) and (max-width: 1300px) {
+    .quest-cards-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .quest-cards-container .quest-card {
+        grid-column: span 2;
+    }
+}
+
+.quest-card {
+    grid-column: span 1;
+}
+
+.quest-card &gt; * {
+    height: 450px;
+    justify-content: center;
+}
+
+@media (max-width: 660px) {
+    .quest-card &gt; * {
+        align-items: center;
+    }
+}
+
+@media (min-width: 660px) and (max-width: 928px) {
+    .quest-card &gt; * {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.quest-card &gt; * .info {
+    width: 90%;
+}
 </style>

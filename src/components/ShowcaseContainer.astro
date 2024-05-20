@@ -1,0 +1,283 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+    imageSets: any
+	isImage: boolean 
+	title: string
+	subtitle: string
+}
+
+const { imageSets , isImage, title,subtitle} = Astro.props;
+
+---
+
+<div class="container">
+	<div class='title-container'>
+		<h2 class='heading'>{title}</h2>
+		<p class='secondary'>{subtitle}</p>
+	</div>
+
+			<div class='showcase-container'>
+				{imageSets.map((imageSet: any) => (
+					<div class='row' >
+						<div class='slide'>
+							{imageSet.map((image: any) => (
+								<a href={image.link} target="_blank" aria-label={`${image?.alt} resource`}>
+									<div class='hovered-image' >
+										{
+											isImage === true ?
+											<Image src={image.image} alt={image.alt} width={167} height={167}loading="eager"/>
+											:
+											<video src={image.image}  width={400} height={400} muted autoplay loop/>
+										}
+									</div>
+								</a>
+							))}
+						</div>
+						<div class='slide'>
+							{imageSet.map((image: any) => (
+								<a href={image.link} target="_blank" aria-label={`${image?.alt} resource`} >
+									<div class='hovered-image' >
+										{
+											isImage === true ?
+											<Image src={image.image} alt={image.alt} width={167} height={167}loading="eager"/>
+											:
+											<video src={image.image}  width={400} height={400} muted autoplay loop/>
+										}
+									</div>
+								</a>
+							))}
+						</div>
+						<div class='slide'>
+							{imageSet.map((image: any) => (
+								<a href={image.link} target="_blank" aria-label={`${image?.alt} resource`}>
+									<div class='hovered-image' >
+										{
+											isImage === true ?
+											<Image src={image.image} alt={image.alt} width={167} height={167}loading="eager"/>
+											:
+											<video src={image.image}  width={400} height={400} muted autoplay loop/>
+										}
+									</div>
+								</a>
+							))}
+						</div>
+						<div class='slide'>
+							{imageSet.map((image: any) => (
+								<a href={image.link} target="_blank" aria-label={`${image?.alt} resource`}>
+									<div class='hovered-image' >
+										{
+											isImage === true ?
+											<Image src={image.image} alt={image.alt} width={167} height={167}loading="eager"/>
+											:
+											<video src={image.image}  width={400} height={400} muted autoplay loop/>
+										}
+									</div>
+								</a>
+							))}
+						</div>
+					</div>
+				))}
+			</div>
+</div>
+
+
+<style>
+
+	@keyframes slide {
+		from {
+			transform: translateX(0);
+		}
+
+		to {
+			transform: translateX(-100%);
+		}
+	}
+
+	@keyframes backward-slide {
+		from {
+			transform: translateX(-100%);
+		}
+
+		to {
+			transform: translateX(0);
+		}
+	}
+
+	.container{
+		display: flex;
+		width: min(calc(100%), 1120px);
+		padding: 40px 160px;
+		flex-direction: column;
+		align-items: center;
+		gap: 50px;
+	}
+
+	.showcase-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 24px;
+		background: rgba(21, 16, 29, 0.16);
+		box-shadow: 0px -120px 160px 0px #15101d inset;
+		left: 0;
+	}
+
+	.row {
+		overflow: hidden;
+		white-space: nowrap;
+		position: relative;
+	}
+
+	.row:before,
+	.row:after {
+		position: absolute;
+		top: 0;
+		width: 250px;
+		height: 100%;
+		z-index: 2;
+	}
+
+	.row:before {
+		left: 0;
+		background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+	}
+
+	.row:after {
+		right: 0;
+		background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+	}
+
+	.row:hover .slide {
+		animation-play-state: paused;
+	}
+
+	.row:nth-child(2):hover .slide {
+		animation-play-state: paused;
+	}
+
+	.slide {
+		display: inline-block;
+		animation: 35s slide infinite linear;
+	}
+
+	.slide.special {
+		animation: 35s backward-slide infinite linear;
+		img {
+			width: 198px;
+			height: 198px;
+			margin: 0;
+
+			&:hover {
+				background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 100%), rgba(0, 0, 0, 0.9);
+				border-radius: 8px;
+			}
+		}
+	}
+
+	.slide img {
+		height: 167px;
+
+		&:hover {
+			background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 100%), rgba(0, 0, 0, 0.9);
+			border-radius: 8px;
+		}
+
+	}
+
+	.row:nth-child(2) {
+		.slide {
+			display: inline-block;
+			animation: 35s backward-slide infinite linear;
+		}
+	}
+
+	@media (max-width: 768px) {
+		width: calc(100% - 32px);
+		padding: 40px 16px;
+	}
+
+	@media (min-width: 1128px) and (max-width: 1366px) {
+		width: calc(100% - 160px);
+		padding: 40px 80px;
+	}
+
+	@media (min-width: 768px) and (max-width: 1128px) {
+		width: calc(100% - 80px);
+		padding: 40px 40px;
+	}
+
+	.hovered-image {
+		display: inline-flex;
+		position: relative;
+		overflow: hidden;
+		cursor: pointer;
+		background: rgba(255, 255, 255, 0.05);
+		margin: 0 12px;
+		border-radius: 8px;
+		span {
+			display: none;
+		}
+		&:hover {
+			span {
+				display: inline;
+			}
+		}
+	}
+
+	.hovered-image:hover::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 8px;
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.88) 100%), rgba(108, 118, 212, 0.16);
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.9;
+	}
+	.hovered-image span:nth-child(2) {
+		top: 35%;
+		left: 45%;
+		@media (max-width: 768px) {
+			top: 30%;
+			left: 43%;
+		}
+	}
+
+	.hovered-image span {
+		position: absolute;
+		color: #fff;
+		font-family: Satoshi;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 24px;
+		letter-spacing: 0.032px;
+		z-index: 9999;
+		top: 50%;
+		left: 20%;
+		@media (max-width: 768px) {
+			left: 13%;
+		}
+	}
+	.title-container {
+		/* position: relative; */
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		align-items: center;
+		z-index: 100;
+		gap: 16px;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+		background: none;
+	}
+</style>

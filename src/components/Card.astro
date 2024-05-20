@@ -6,22 +6,6 @@ import patchTool from '../assets/png/patch-tool.webp';
 import patchThumb from '../assets/png/patch-thumb.webp';
 import slider from '../assets/png/slider.webp';
 import lineartTool from '../assets/png/lineart-tool.webp';
-import material1 from '../assets/png/panel-first-state.webp';
-import material2 from '../assets/png/panel-second-state.webp';
-import material3 from '../assets/png/panel-third-state.webp';
-import robot1 from '../assets/png/robot-first-state.webp';
-import robot2 from '../assets/png/robot-second-state.webp';
-import robot3 from '../assets/png/robot-third-state.webp';
-import standingRobot1 from '../assets/png/standing-robot-first-state.webp';
-import standingRobot2 from '../assets/png/standing-robot-second-state.webp';
-import standingRobot3 from '../assets/png/standing-robot-third-state.webp';
-import standingRobot4 from '../assets/png/standing-robot-fourth-state.webp';
-import standingRobot5 from '../assets/png/standing-robot-fifth-state.webp';
-
-// Image arrays
-const panelImages = [material1, material2, material3];
-const firstImages = [robot1, robot2, robot3];
-const secondImages = [standingRobot1, standingRobot2, standingRobot3, standingRobot4, standingRobot5];
 
 const { title, text, image, imageClassName } = Astro.props;
 const smallScreen = false
@@ -35,36 +19,26 @@ const smallScreen = false
     </div>
 
     {smallScreen && imageClassName === 'thirdImage' && (
-        <Image class="smallThirdImage" src={image} alt="card image" />
+        <Image class="smallThirdImage" src={image} alt="card image" loading="eager"/>
     )}
 
     {imageClassName && (
         <>
             {imageClassName === 'fourthImage' && (
                 <>
-                    <Image src={patchTool} width="240" height="80" alt="Patch tool" />
-                    <Image src={slider} width="159" style="margin-top: -25px;" alt="Slider" />
-                    <Image src={patchThumb} class="patch-thumb" height="64" width="64" alt="Patch thumb" />
+                    <Image src={patchTool} width="240" height="80" alt="Patch tool" loading="eager"/>
+                    <Image src={slider} width="159" style="margin-top: -25px;" alt="Slider" loading="eager"/>
+                    <Image src={patchThumb} class="patch-thumb" height="64" width="64" alt="Patch thumb" loading="eager"/>
                 </>
             )}
             {imageClassName === 'fifthImage' && (
-                <Image src={lineartTool} width="240" height="80" alt="Lineart tool" />
+                <Image src={lineartTool} width="240" height="80" alt="Lineart tool" loading="eager"/>
             )}
-            {/* {imageClassName === 'firstImage' && (
-                <ImageAnimation timeout={2000} images={panelImages} width="240" height="148" />
-            )} */}
         </>
     )}
 
-    <!-- {imageClassName !== 'firstImage' && imageClassName !== 'secondImage' ? (
-        <Image class={imageClassName} src={image} alt="card image" />
-    ) : (
-        <ImageAnimation
-            timeout={imageClassName === 'firstImage' ? 2000 : 3000}
-            images={imageClassName === 'firstImage' ? firstImages : secondImages}
-            imageClassName={imageClassName === 'firstImage' ? 'firstImage' : 'secondImage'}
-        />
-    )} -->
+  <Image src={image} alt="card image" width={388} height={400} class={imageClassName}loading="eager"/>
+	
 </StyledCardWithInfo>
 
 <style>
