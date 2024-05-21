@@ -11,7 +11,12 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.6.0",
+    "@astrojs/react": "^3.3.4",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.18",
     "astro": "^4.8.3",
+    "framer-motion": "^11.2.4",
     "lite-youtube-embed": "^0.3.2",
     "typescript": "^5.4.5"
   }
