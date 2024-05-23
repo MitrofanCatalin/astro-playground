@@ -1,6 +1,6 @@
 import { useMediaQuery } from '@mui/material'
 import { HeroConstants } from '../../HeroConstants'
-import { m, useScroll, useTransform } from 'framer-motion'
+import { m, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
 import React from 'react';
 
 interface IProps {
@@ -8,10 +8,9 @@ interface IProps {
 	scrollElementRef: React.RefObject<HTMLDivElement>
 }
 
-export const AnimatedMainImage = ({ containerRef, scrollElementRef }: IProps) => {
+export const AnimatedMainImage = ({ scrollElementRef }: IProps) => {
 	const isSmallScreen = useMediaQuery('(max-width: 768px)')
 	const { scrollYProgress } = useScroll({
-		container: containerRef,
 		target: scrollElementRef,
 	})
 
@@ -39,6 +38,12 @@ export const AnimatedMainImage = ({ containerRef, scrollElementRef }: IProps) =>
 
 	const threeDAnimator = useTransform(scrollYProgress, [0.63, 1], [0, 1])
 	const threeDAnimatorOpacity = useTransform(threeDAnimator, [0, 0.45], [0, 1])
+
+	useMotionValueEvent(scrollYProgress, "change", (latest) => {
+		console.log(latest)
+	})
+
+	console.log(scrollElementRef)
 
 	return (
 		<>

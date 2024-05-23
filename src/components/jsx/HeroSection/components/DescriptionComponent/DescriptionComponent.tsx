@@ -1,7 +1,5 @@
 import { Box, Button, Typography, useMediaQuery } from '@mui/material'
 import { HeroConstants } from '../../HeroConstants'
-// import { useTopBar } from 'features/TopBar/useTopBar'
-// import { AnimatedTitle } from '../AnimatedTitle/AnimatedTitle'
 import { useMotionValueEvent, useScroll } from 'framer-motion'
 import { useState } from 'react'
 import React from 'react';
@@ -11,11 +9,10 @@ interface IProps {
 	scrollElementRef: React.RefObject<HTMLDivElement>
 }
 
-export const DescriptionComponent = ({ containerRef, scrollElementRef }: IProps) => {
+export const DescriptionComponent = ({ scrollElementRef }: IProps) => {
 	const [index, setIndex] = useState(0)
 
 	const { scrollYProgress } = useScroll({
-		container: containerRef,
 		target: scrollElementRef,
 	})
 

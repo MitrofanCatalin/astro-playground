@@ -1,15 +1,14 @@
 import { HeroSection } from './HeroSection/HeroSection'
 import { useEffect, useRef, useState } from 'react'
 import { StyledHeroPage } from './StyledHeroPage'
-// import TopBar from '../TopBar.astro';
 import React from 'react';
-
-// interface IProps {
-// 	containerRef: React.RefObject<HTMLDivElement> | null
-// }
+import { TopBar } from './HeroSection/components/TopBar/TopBar';
 
 export const HeroPage = () => {
 	const [targetRefToUse, setTargetRefToUse] = useState<any>(null)
+	const [refToUse, setRefToUse] = useState<React.RefObject<any> | null>(null)
+
+	const containerRef = useRef<HTMLDivElement | null>(null)
 	const targetRef = useRef<HTMLDivElement | null>(null)
 
 	useEffect(() => {
@@ -18,13 +17,10 @@ export const HeroPage = () => {
 		}
 	}, [targetRef])
 
-	const [refToUse, setRefToUse] = useState<React.RefObject<HTMLDivElement> | null>(null)
-	const containerRef = useRef<HTMLDivElement | null>(null)
-
 	useEffect(() => {
-		const main = document.querySelector('main')
+		const main = document.getElementById('parent')
 		if (main) {
-			containerRef.current = main as HTMLDivElement
+			containerRef.current = main as any
 			setRefToUse(containerRef)
 		}
 	}, [])
@@ -34,7 +30,9 @@ export const HeroPage = () => {
 			<StyledHeroPage>
 				<div className='background'></div>
 				<div className='hero-wrapping-container'>
-
+					<div className='topbar-wrapper'>
+						<TopBar />
+					</div>
 					<div className='absolute-hero'>
 						{targetRefToUse && refToUse && <HeroSection containerRef={refToUse} scrollElementRef={targetRef} />}
 					</div>

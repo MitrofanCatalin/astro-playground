@@ -9,11 +9,10 @@ interface IProps {
 	scrollElementRef: React.RefObject<HTMLDivElement>
 }
 
-export const AnimatedFirstImage = ({ containerRef, scrollElementRef }: IProps) => {
+export const AnimatedFirstImage = ({ scrollElementRef }: IProps) => {
 	const isSmallScreen = useMediaQuery('(max-width: 768px)')
 
 	const { scrollYProgress } = useScroll({
-		container: containerRef,
 		target: scrollElementRef,
 	})
 

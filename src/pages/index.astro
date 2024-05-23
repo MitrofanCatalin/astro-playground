@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import TopBar from '../components/TopBar.astro';
-import { useEffect, useRef, useState } from 'react'
 
 import {ShowcaseConstant, CardConstants, questConstants} from '../constants/TextureConstants'
 import {GeometryConstant, GeometryCardConstants} from '../constants/GeometryConstant'
@@ -15,13 +13,11 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-	<div class="topbar-wrapper">
-		<TopBar href='google/com'/>	
-	</div>
-
-	<main >
+	<div id="parent">
 		<HeroPage client:only="react" />
-
+	</div>
+	
+	<main >
 		<div class="container">
 			<lite-youtube videoid="NE90uY8LJc4" style="background-image: url('https://i.ytimg.com/vi/NE90uY8LJc4/hqdefault.jpg')" class="yt-video">
 				<a href="https://youtube.com/watch?v=NE90uY8LJc4" class="lty-playbtn" title="Play Video">
@@ -119,8 +115,8 @@ import Footer from '../components/Footer.astro';
 			</div>
 		</div>
 
+		<Footer/>
 	</main>
-	<Footer/>
 </Layout>
 
 <style is:global>

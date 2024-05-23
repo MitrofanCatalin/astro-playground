@@ -1,11 +1,7 @@
 import { Box, Button } from '@mui/material'
-// import AnimationIcon from 'assets/svg/animation-generator.svg?react'
-// import TextureIcon from 'assets/svg/texture-generator-list-item.svg?react'
-// import GeometryIcon from 'assets/svg/Pyramid.svg?react'
 import { useEffect, useState } from 'react'
 import { HeroConstants } from '../HeroConstants'
 import { useMotionValueEvent, useScroll } from 'framer-motion'
-// import { getDeviceType } from '@charmed/components'
 import React from 'react';
 
 interface IProps {
@@ -13,12 +9,11 @@ interface IProps {
 	scrollElementRef: React.RefObject<HTMLDivElement>
 }
 
-export const ButtonColumn = ({ containerRef, scrollElementRef }: IProps) => {
+export const ButtonColumn = ({ scrollElementRef }: IProps) => {
 	const isMobile = false
 	const [index, setIndex] = useState(0)
 
 	const { scrollYProgress } = useScroll({
-		container: containerRef,
 		target: scrollElementRef,
 	})
 
@@ -44,16 +39,14 @@ export const ButtonColumn = ({ containerRef, scrollElementRef }: IProps) => {
 		const scrollAmount =
 			percentageValue * (scrollElementRef.current?.scrollHeight || 0) - percentageValue * window.innerHeight
 
-		if (!containerRef.current) return
-		containerRef.current.scrollTo({
+		window.scrollTo({
 			top: scrollAmount,
 			behavior: 'smooth',
 		})
 	}
 
 	const handleKeyDown = (e: KeyboardEvent) => {
-		// const isArrowKey = ['ArrowDown', 'ArrowUp'].includes(e.key)
-		const isArrowKey = true
+		const isArrowKey = ['ArrowDown', 'ArrowUp'].includes(e.key)
 		const scrollContainer = document.querySelector('main')
 
 		const shouldAllowUp = index === 3 && e.key === 'ArrowUp' && (scrollContainer?.scrollTop || 0) < 2500

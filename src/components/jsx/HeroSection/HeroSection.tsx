@@ -1,5 +1,5 @@
 import { LazyMotion, domAnimation } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, } from 'react'
 import { StyledHeroSection } from './StyledHeroSection'
 import { Description } from './components/Description'
 import { Box, useMediaQuery } from '@mui/material'

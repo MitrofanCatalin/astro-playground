@@ -3,7 +3,6 @@ import { useMotionValueEvent, useScroll } from 'framer-motion'
 import { AnimatedTitle } from './AnimatedTitle/AnimatedTitle'
 import { Box, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
-// import { useTopBar } from 'features/TopBar/useTopBar'
 import { Button } from '@mui/material'
 import { AnimatedSubtitle } from './AnimatedSubtitle/AnimatedSubtitle'
 import React from 'react';
@@ -13,10 +12,9 @@ interface IProps {
 	scrollElementRef: React.RefObject<HTMLDivElement>
 }
 
-export const Description = ({ containerRef, scrollElementRef }: IProps) => {
+export const Description = ({ scrollElementRef }: IProps) => {
 	const [index, setIndex] = useState(0)
 	const { scrollYProgress } = useScroll({
-		container: containerRef,
 		target: scrollElementRef,
 	})
 
