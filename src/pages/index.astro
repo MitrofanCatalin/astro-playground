@@ -120,6 +120,10 @@ import Footer from '../components/Footer.astro';
 </Layout>
 
 <style is:global>
+	#parent{
+		height: 650vh;
+	}
+
 	main {
 		display: flex;
 		width: auto;
@@ -132,7 +136,6 @@ import Footer from '../components/Footer.astro';
 	}
 	@media (max-width: 768px) {
 		main {
-			width: 100%;
 			padding: 20px 40px;
 		}
 	}

@@ -33,24 +33,6 @@ export const TopBar = () => {
 				<Button className='nav-button'>
 					Documentation
 				</Button>
-
-				<Button
-					variant='outlined'
-
-					sx={{ borderColor: 'rgba(255, 255, 255, 0.2)', color: 'rgba(209, 205, 218, 1)', fontWeight: 700 }}
-				>
-					Log in
-				</Button>
-				<Button
-					variant='contained'
-
-					sx={{
-						fontWeight: 700,
-					}}
-				>
-					Signup
-				</Button>
-
 			</div>
 
 		</StyledTopBar>

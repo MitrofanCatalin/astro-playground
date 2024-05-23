@@ -39,12 +39,6 @@ export const AnimatedMainImage = ({ scrollElementRef }: IProps) => {
 	const threeDAnimator = useTransform(scrollYProgress, [0.63, 1], [0, 1])
 	const threeDAnimatorOpacity = useTransform(threeDAnimator, [0, 0.45], [0, 1])
 
-	useMotionValueEvent(scrollYProgress, "change", (latest) => {
-		console.log(latest)
-	})
-
-	console.log(scrollElementRef)
-
 	return (
 		<>
 			<m.img

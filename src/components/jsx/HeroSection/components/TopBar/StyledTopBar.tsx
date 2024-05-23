@@ -21,6 +21,9 @@ export const StyledTopBar = styled.div`
 		display: flex;
 		gap: 16px;
 		align-items: center;
+		@media (max-width: 1050px) {
+			display: none;
+		}
 	}
 
 	.nav-button {
