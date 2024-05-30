@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title='signup'>
+    <button id="login">Login</button>
+    <button id="logout">Logout</button>
+</Layout>
+
+<script>
+    import { useAuth, useAuthHelpers } from '../auth/index'
+    import {apiUrls,ssoRedirectUrl} from '../auth/constants'
+    const { signIn, signOut } = useAuth(apiUrls, ssoRedirectUrl)
+    const {getAuthenticatedUser} = useAuthHelpers()
+    const checkIfAuthenticated = async () => {
+		let user
+		try {
+			user = await getAuthenticatedUser()
+			return !!user
+		} catch {
+			return false
+		}
+	}
+    const signinUser = async ()=>{
+        const isAuthenticated = await checkIfAuthenticated()
+		if (isAuthenticated) {
+			window.open('/')
+		}else await signIn('catalin.mitrofan@assist.ro', 'Catmit00')
+        window.open('/')
+    }
+    document.querySelector("#login").onclick = () =>signinUser()
+    document.querySelector("#logout").onclick = () => signOut()
+</script>

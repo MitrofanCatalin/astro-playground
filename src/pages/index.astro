@@ -10,13 +10,14 @@ import { HeroPage } from '../components/jsx/HeroPage';
 import AnimationContainer from '../components/AnimationContainer.astro';
 import ShowcaseContainer from '../components/ShowcaseContainer.astro';
 import Footer from '../components/Footer.astro';
+
 ---
 
 <Layout title="Welcome to Astro.">
 	<div id="parent">
 		<HeroPage client:only="react" />
 	</div>
-	
+
 	<main >
 		<div class="container">
 			<lite-youtube videoid="NE90uY8LJc4" style="background-image: url('https://i.ytimg.com/vi/NE90uY8LJc4/hqdefault.jpg')" class="yt-video">
