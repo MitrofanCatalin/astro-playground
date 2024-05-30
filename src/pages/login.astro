@@ -27,6 +27,6 @@ import Layout from '../layouts/Layout.astro';
 		}else await signIn('catalin.mitrofan@assist.ro', 'Catmit00')
         window.open('/')
     }
-    document.querySelector("#login").onclick = () =>signinUser()
-    document.querySelector("#logout").onclick = () => signOut()
+    document.querySelector("#login")?.addEventListener("click", () => signinUser());
+    document.querySelector("#logout")?.addEventListener("click", () => signOut());
 </script>
